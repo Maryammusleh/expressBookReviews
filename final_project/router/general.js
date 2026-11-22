@@ -1,43 +1,25 @@
-const express = require('express');
-let books = require("./booksdb.js");
-let isValid = require("./auth_users.js").isValid;
-let users = require("./auth_users.js").users;
-const public_users = express.Router();
+// Get books by author using async/await with Axios
+const getBooksByAuthorAxios = async (author) => {
+try {
+const response = await axios.get(${BASE_URL}/author/${encodeURIComponent(author)});
+return response.data;
+} catch (error) {
+throw new Error(Error fetching books by author: ${error.message});
+}
+};
 
-
-public_users.post("/register", (req,res) => {
-  //Write your code here
-  return res.status(300).json({message: "Yet to be implemented"});
-});
-
-// Get the book list available in the shop
-public_users.get('/',function (req, res) {
-  //Write your code here
-  return res.status(300).json({message: "Yet to be implemented"});
-});
-
-// Get book details based on ISBN
-public_users.get('/isbn/:isbn',function (req, res) {
-  //Write your code here
-  return res.status(300).json({message: "Yet to be implemented"});
- });
-  
-// Get book details based on author
-public_users.get('/author/:author',function (req, res) {
-  //Write your code here
-  return res.status(300).json({message: "Yet to be implemented"});
-});
-
-// Get all books based on title
-public_users.get('/title/:title',function (req, res) {
-  //Write your code here
-  return res.status(300).json({message: "Yet to be implemented"});
-});
-
-//  Get book review
-public_users.get('/review/:isbn',function (req, res) {
-  //Write your code here
-  return res.status(300).json({message: "Yet to be implemented"});
-});
+// Get books by title using async/await with Axios
+const getBooksByTitleAxios = async (title) => {
+try {
+const response = await axios.get(${BASE_URL}/title/${encodeURIComponent(title)});
+return response.data;
+} catch (error) {
+throw new Error(Error fetching books by title: ${error.message});
+}
+};
 
 module.exports.general = public_users;
+module.exports.getAllBooksAxios = getAllBooksAxios;
+module.exports.getBookByISBNAxios = getBookByISBNAxios;
+module.exports.getBooksByAuthorAxios = getBooksByAuthorAxios;
+module.exports.getBooksByTitleAxios = getBooksByTitleAxios;
